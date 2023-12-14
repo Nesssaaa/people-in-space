@@ -1,7 +1,5 @@
 console.clear;
 
-console.log("Sanity check");
-
 const peopleInSpace = document.querySelector('[data-js="people-in-space"]');
 
 async function fetchPeopleInSpace() {
@@ -13,30 +11,24 @@ async function fetchPeopleInSpace() {
     }
 
     const data = await response.json();
-    console.log(data);
-    peopleInSpace.textContent = data.number;
+    return data;
   } catch (error) {
-    console.log("error.message");
+    alert(`Es ist leider ein Fehler aufgetreten: ${error.message}`);
   }
 }
 
-fetchPeopleInSpace();
+async function doStuff() {
+  const data = await fetchPeopleInSpace();
 
-async function fetchNames() {
-  const url = "http://api.open-notify.org/astros.json";
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(response.status);
-    }
+  peopleInSpace.textContent = data.number;
 
-    const data = await response.json();
-    console.log(data);
-
-    const names = document.createElement("ul");
-
-    document.body.append(names);
-  } catch (error) {
-    console.log("error.message");
-  }
+  const names = document.createElement("ul");
+  data.people.forEach((element) => {
+    const name = document.createElement("li");
+    name.textContent = element.name;
+    names.append(name);
+  });
+  document.body.append(names);
 }
+
+doStuff();
