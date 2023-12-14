@@ -32,3 +32,18 @@ async function doStuff() {
 }
 
 doStuff();
+
+//add three buttons: All, ISS; Tiangong
+// onClick update list of people displayed on the page based on which space craft they are on
+
+function Button(props) {
+  const button = document.createElement("button");
+  button.textContent = props.name;
+  button.type = "button";
+  button.addEventListener("click", () => {
+    console.log("hallo");
+  });
+  return button;
+}
+const button = Button({ name: "ISS" });
+document.body.append(button);
