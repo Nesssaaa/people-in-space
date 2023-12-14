@@ -45,5 +45,12 @@ function Button(props) {
   });
   return button;
 }
-const button = Button({ name: "ISS" });
-document.body.append(button);
+
+const buttonAll = Button({ name: "All" });
+document.body.append(buttonAll);
+
+const buttonISS = Button({ name: "ISS" });
+document.body.append(buttonISS);
+
+const buttonTiangong = Button({ name: "Tiangong" });
+document.body.append(buttonTiangong);
